@@ -5,24 +5,25 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+
+const niveis = {
+    0: "Ferro",         
+    10: "Bronze",       
+    21: "Prata",         
+    51: "Ouro",          
+    81: "Diamante",      
+    91: "Lendário",      
+    101: "Imortal"       
+};
+
 function calcularRank(vitorias, derrotas) {
     const saldoVitorias = vitorias - derrotas;
-    let nivel;
+    let nivel = "Ferro"; 
 
-    if (vitorias < 10) {
-        nivel = "Ferro";
-    } else if (vitorias >= 11 && vitorias <= 20) {
-        nivel = "Bronze";
-    } else if (vitorias >= 21 && vitorias <= 50) {
-        nivel = "Prata";
-    } else if (vitorias >= 51 && vitorias <= 80) {
-        nivel = "Ouro";
-    } else if (vitorias >= 81 && vitorias <= 90) {
-        nivel = "Diamante";
-    } else if (vitorias >= 91 && vitorias <= 100) {
-        nivel = "Lendário";
-    } else if (vitorias >= 101) {
-        nivel = "Imortal";
+    for (const limite in niveis) {
+        if (vitorias >= limite) {
+            nivel = niveis[limite];
+        }
     }
 
     console.log(`O Herói tem de saldo de ${saldoVitorias} está no nível de ${nivel}`);
